@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Shit:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="gs-rest-service-0.1.0.war">
+      <element id="artifact" artifact-name="Shit:war exploded" />
+    </root>
+  </artifact>
+</component>

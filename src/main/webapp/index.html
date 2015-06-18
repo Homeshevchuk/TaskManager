@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebApp</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="myScript.js"></script>
+</head>
+<body style="margin-top: 5%">
+<h1 align="center">Simple Todo Application</h1>
+
+<form class="col-lg-6 col-lg-offset-3 jumbotron" ng-app="application" ng-controller="mainController">
+    <div class="form-group">
+        <label for="taskInput" class="">Task</label>
+        <input class="form-control " id="taskInput" placeholder="Task text" ng-model="task"
+               ng-keypress="addTask($event,task)">
+    </div>
+
+    <div>
+        <table class="table table-stripped">
+            <thead>
+            <tr>
+                <th class="col-lg-1">№</th>
+                <th class="col-lg-11">Task</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="task in tasks" ng-click="select(task.number)" ng-class="{'warning' : task.number === idSelectedVote}">
+                <td >{{task.number}}</td>
+                <td>{{task.task}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group form-inline">
+        <button type="button" class="btn btn-default btn-md">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="edit()"></span>
+        </button>
+        <button type="button" class="btn btn-default btn-md">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="delete()"></span>
+        </button>
+    </div>
+</form>
+<script>
+
+</script>
+</body>
+</html>
