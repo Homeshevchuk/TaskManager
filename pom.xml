@@ -35,16 +35,5 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <number>spring-releases</number>
-            <url>https://repo.spring.io/libs-release</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <number>spring-releases</number>
-            <url>https://repo.spring.io/libs-release</url>
-        </pluginRepository>
-    </pluginRepositories>
+
 </project>

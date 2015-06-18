@@ -31,11 +31,32 @@ public class TaskBox {
 
 
     public void addTask(Task task) {
-        task.setNumber(this.tasks.size() + 1);
+        task.setNumber(this.tasks.get(this.tasks.size()-1).getNumber() + 1);
         this.tasks.add(task);
+    }
+    public void deleteTasks(Task[] tasksToDelete){
+        for(Task taskToDelete:tasksToDelete){
+            for(Task task:tasks){
+                if(task.equals(taskToDelete)){
+                    tasks.remove(task);
+                    break;
+                }
+            }
+        }
     }
 
     public List<Task> getAll() {
         return tasks;
+    }
+
+    public void editTasks(Task[] tasksToEdit) {
+        for(Task taskToEdit :tasksToEdit){
+            for(Task task:tasks){
+                if(task.getNumber()==taskToEdit.getNumber()){
+                    task.setTask(taskToEdit.getTask());
+                    break;
+                }
+            }
+        }
     }
 }
