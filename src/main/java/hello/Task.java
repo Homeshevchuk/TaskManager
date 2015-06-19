@@ -1,4 +1,4 @@
-package todo;
+package hello;
 
 import javax.persistence.*;
 
@@ -10,9 +10,7 @@ import javax.persistence.*;
 public class Task {
     @Id
     @GeneratedValue
-    @Column
     private int id;
-    @Column
     private String task;
 
     public Task() {
@@ -57,5 +55,13 @@ public class Task {
         int result = id;
         result = 31 * result + (task != null ? task.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", task='" + task + '\'' +
+                '}';
     }
 }
