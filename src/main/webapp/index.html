@@ -31,8 +31,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="task in tasks" ng-click="select(task.number)" ng-class="{'warning' : userSelected(task) }">
-                <td >{{task.number}}</td>
+            <tr ng-repeat="task in tasks" ng-click="select(task.id)" ng-class="{'warning' : userSelected(task) }">
+                <td >{{task.id}}</td>
                 <td>{{task.task}}</td>
             </tr>
             </tbody>

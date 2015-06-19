@@ -1,7 +1,6 @@
 package todo;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -31,7 +30,7 @@ public class TaskBox {
 
 
     public void addTask(Task task) {
-        task.setNumber(this.tasks.get(this.tasks.size()-1).getNumber() + 1);
+        task.setId(this.tasks.get(this.tasks.size() - 1).getId() + 1);
         this.tasks.add(task);
     }
     public void deleteTasks(Task[] tasksToDelete){
@@ -52,7 +51,7 @@ public class TaskBox {
     public void editTasks(Task[] tasksToEdit) {
         for(Task taskToEdit :tasksToEdit){
             for(Task task:tasks){
-                if(task.getNumber()==taskToEdit.getNumber()){
+                if(task.getId()==taskToEdit.getId()){
                     task.setTask(taskToEdit.getTask());
                     break;
                 }
