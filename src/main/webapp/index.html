@@ -18,7 +18,7 @@
 <form class="col-lg-6 col-lg-offset-3 jumbotron" ng-app="application" ng-controller="mainController">
     <div class="form-group">
         <label for="taskInput" class="">Task</label>
-        <input class="form-control " id="taskInput" placeholder="Task text" ng-model="task"
+        <input class="form-control " number="taskInput" placeholder="Task text" ng-model="task"
                ng-keypress="addTask($event,task)">
     </div>
 
@@ -31,8 +31,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="task in tasks" ng-click="select(task.id)" ng-class="{'warning' : userSelected(task)}">
-                <td >{{task.id}}</td>
+            <tr ng-repeat="task in tasks" ng-click="select(task.number)" ng-class="{'warning' : userSelected(task)}">
+                <td >{{task.number}}</td>
                 <td>{{task.task}}</td>
             </tr>
             </tbody>

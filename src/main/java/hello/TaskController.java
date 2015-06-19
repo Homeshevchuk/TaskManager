@@ -16,7 +16,7 @@ public class TaskController {
     @RequestMapping(value = "/addTask", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Task> addTask(@RequestBody Task task) {
-        if(task!=null){
+        if (task != null) {
             taskRepository.save(task);
         }
         return new ResponseEntity<Task>(task, HttpStatus.OK);
@@ -33,8 +33,9 @@ public class TaskController {
 
     @RequestMapping(value = "/editTasks", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Task> editTask(@RequestBody Task[] tasksToEdit) {
+    public ResponseEntity<Task> editTask(@RequestBody List<Task> tasksToEdit) {
         if (tasksToEdit != null) {
+            taskRepository.save(tasksToEdit);
 
         }
         return new ResponseEntity<Task>(HttpStatus.OK);
@@ -44,7 +45,7 @@ public class TaskController {
     @ResponseBody
     public ResponseEntity<List<Task>> getTasks() {
         List<Task> list = new ArrayList<>();
-        for(Task task:taskRepository.findAll()){
+        for (Task task : taskRepository.findAll()) {
             list.add(task);
         }
         return new ResponseEntity<List<Task>>(list, HttpStatus.OK);

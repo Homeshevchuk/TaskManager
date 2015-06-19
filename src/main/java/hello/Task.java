@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Task {
     @Id
     @GeneratedValue
-    private int id;
+    private long number;
     private String task;
 
     public Task() {
@@ -18,16 +18,16 @@ public class Task {
     }
 
     public Task(int id, String value) {
-        this.id = id;
+        this.number = id;
         this.task = value;
     }
 
-    public int getId() {
-        return id;
+    public long getNumber() {
+        return number;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public String getTask() {
@@ -45,14 +45,14 @@ public class Task {
 
         Task task1 = (Task) o;
 
-        if (id != task1.id) return false;
+        if (number != task1.number) return false;
         return !(task != null ? !task.equals(task1.task) : task1.task != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (number ^ (number >>> 32));
         result = 31 * result + (task != null ? task.hashCode() : 0);
         return result;
     }
@@ -60,7 +60,7 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "id=" + id +
+                "number=" + number +
                 ", task='" + task + '\'' +
                 '}';
     }
