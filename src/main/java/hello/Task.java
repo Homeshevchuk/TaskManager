@@ -1,12 +1,16 @@
-package todo;
+package hello;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.*;
+
 
 /**
  * Created by HomePC on 17.06.2015.
  */
+@Entity
 public class Task {
-    private int number;
+    @Id
+    @GeneratedValue
+    private long number;
     private String task;
 
     public Task() {
@@ -18,7 +22,7 @@ public class Task {
         this.task = value;
     }
 
-    public int getNumber() {
+    public long getNumber() {
         return number;
     }
 
@@ -48,8 +52,16 @@ public class Task {
 
     @Override
     public int hashCode() {
-        int result = number;
+        int result = (int) (number ^ (number >>> 32));
         result = 31 * result + (task != null ? task.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "number=" + number +
+                ", task='" + task + '\'' +
+                '}';
     }
 }
