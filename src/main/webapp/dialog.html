@@ -1,0 +1,44 @@
+<md-dialog aria-label="Task editor">
+    <form>
+        <md-toolbar style = "background-color:#ff0018 ">
+            <div class="md-toolbar-tools">
+                <h2>Task editor</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:800px;height:350px; ">
+
+                <md-content md-theme="docs-dark" layout-gt-sm="column" layout-padding>
+                <div layout = "row">
+                        <md-input-container flex = "50">
+                            <label>Title</label>
+                            <input ng-model="user.title">
+                        </md-input-container>
+                </div>
+                <div layout="row">
+                    <div layout = "column" flex = "50">
+                        <i flex = "50">asdasdasd</i>
+                        <i flex = "50">asdasdasdasasd</i>
+                    </div>
+                        <md-input-container class="md-block" flex = "50">
+                            <label>Biography</label>
+                            <textarea ng-model="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
+                        </md-input-container>
+                </div>
+                </md-content>
+
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="answer('Cancel')" >
+                Cancel
+            </md-button>
+            <md-button ng-click="answer('Create')" style="margin-right:20px;" >
+                Create
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

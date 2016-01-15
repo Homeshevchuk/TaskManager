@@ -16,7 +16,7 @@ app.config(function($routeProvider, $locationProvider) {
         }).otherwise({redirectTo:'/'});
 
     });
-app.controller('mainController', function ($scope, $http, $rootScope) {
+app.controller('mainController', function ($scope, $http, $rootScope,$mdDialog) {
     $rootScope.active = true;
     $scope.idSelectedVotes = [];
     $scope.fuckingBar = {
@@ -106,9 +106,35 @@ app.controller('mainController', function ($scope, $http, $rootScope) {
                 data: toEdit
             });
     };
+
+    $scope.showAdvanced = function(ev) {
+
+        $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'dialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+            })
+            .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function() {
+                $scope.status = 'You cancelled the dialog.';
+            })};
 });
 app.controller('navigation', function($rootScope) {
 });
 app.controller('authorization', function($rootScope) {
     $rootScope.active = false;
 });
+function DialogController($scope, $mdDialog) {
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+    $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+    };
+}

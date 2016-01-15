@@ -5,7 +5,7 @@
     <title>WebApp</title>
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
 </head>
-<body style="margin-top: 5%">
+<body style="margin-top: 5%" class = "ng-cloak">
 <md-content>
     <md-list>
         <md-list-item class="md-3-line md-long-text" ng-repeat="task in tasks">
@@ -30,7 +30,7 @@
         </md-list-item>-->
     </md-list>
 
-    <md-button class="md-icon-button " style = "background-color: #ff0018;margin-left: 95%" aria-label="Favorite">
+    <md-button class="md-icon-button " style = "background-color: #ff0018;margin-left: 95%" aria-label="Favorite" ng-click="showAdvanced($event)">
         <i class="material-icons orange600" style="font-size: 24px;color: #f8f7ff;">add</i>
     </md-button>
 
