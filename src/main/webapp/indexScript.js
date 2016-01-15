@@ -1,18 +1,51 @@
 /**
  * Created by HomePC on 17.06.2015.
  */
-var app = angular.module('application', []);
-app.controller('mainController', function ($scope, $http) {
+var app = angular.module('application', ['ngRoute','ngMaterial','ngMdIcons']);
+app.config(function($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode({
+        enabled:true,
+        requireBase:false
+    });
+        $routeProvider.when('/', {
+            templateUrl : 'home.html',
+            controller : 'mainController'
+        }).when('/login', {
+            templateUrl : 'Login.html',
+            controller : 'authorization'
+        }).otherwise({redirectTo:'/'});
+
+    });
+app.controller('mainController', function ($scope, $http, $rootScope) {
+    $rootScope.active = true;
     $scope.idSelectedVotes = [];
-    $http.get("http://localhost:8080/getTasks")
+    $scope.fuckingBar = {
+        count:0,
+        isOpen:false,
+        selectedDirection: 'left'
+
+    };
+    $scope.toHide = [];
+    $http.get("/Task/getTasks")
         .success(function (data) {
             $scope.tasks = data;
+            var l = $scope.tasks.length;
+
+            while (l--) {
+                console.log(l);
+               $scope.toHide[l] = true;
+            };
+            console.log($scope.toHide);
         });
+    $scope.hide = function (index) {
+        console.log($scope.fuckingBar.count);
+        $scope.toHide[index] = !$scope.toHide[index];
+    };
     $scope.addTask = function (keyEvent, value) {
         if (keyEvent.which === 13) {
             $http({
                 method: "post",
-                url: "http://localhost:8080/addTask",
+                url: "/Task/addTask",
                 data: { task : value }
             }).success(function(data){
                   $scope.tasks.push({number: data.number, task: value});
@@ -50,7 +83,7 @@ app.controller('mainController', function ($scope, $http) {
         $scope.idSelectedVotes = [];
         $http({
                 method: "post",
-                url: "http://localhost:8080/deleteTasks",
+                url: "/Task/deleteTasks",
                 data: toDelete
             });
     };
@@ -69,10 +102,13 @@ app.controller('mainController', function ($scope, $http) {
         $scope.idSelectedVotes = [];
         $http({
                 method: "post",
-                url: "http://localhost:8080/editTasks",
+                url: "/Task/editTasks",
                 data: toEdit
             });
-            
-      
     };
+});
+app.controller('navigation', function($rootScope) {
+});
+app.controller('authorization', function($rootScope) {
+    $rootScope.active = false;
 });

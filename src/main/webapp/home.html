@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebApp</title>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+</head>
+<body style="margin-top: 5%">
+<md-content>
+    <md-list>
+        <md-list-item class="md-3-line md-long-text" ng-repeat="task in tasks">
+<!--
+          <md-button class="md-icon-button" style = "margin: 16px" aria-label="More" ><i class="material-icons">more_vert</i>-->
+
+            <div class="md-list-item-text">
+                <h2>{{task.number}}</h2>
+                <p>{{task.task}}</p>
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+        <!--<md-list-item class="md-3-line" ng-if="$last">
+
+            <md-button class="md-icon-button" aria-label="More" style = "margin:20px;"><i class="material-icons">more_vert</i>
+            </md-button>
+            <div class="md-list-item-text">
+                <h3>Говно собачее</h3>
+                <p>Собачее</p>
+
+            </div>
+        </md-list-item>-->
+    </md-list>
+
+    <md-button class="md-icon-button " style = "background-color: #ff0018;margin-left: 95%" aria-label="Favorite">
+        <i class="material-icons orange600" style="font-size: 24px;color: #f8f7ff;">add</i>
+    </md-button>
+
+</md-content>
+</body>
+</html>

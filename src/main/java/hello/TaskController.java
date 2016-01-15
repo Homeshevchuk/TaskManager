@@ -13,7 +13,7 @@ public class TaskController {
     @Autowired
     private TaskRepository taskRepository;
 
-    @RequestMapping(value = "/addTask", method = RequestMethod.POST)
+    @RequestMapping(value = "/Task/addTask", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Task> addTask(@RequestBody Task task) {
         if (task != null) {
@@ -22,7 +22,7 @@ public class TaskController {
         return new ResponseEntity<Task>(task, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/deleteTasks", method = RequestMethod.POST)
+    @RequestMapping(value = "/Task/deleteTasks", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Task> addTask(@RequestBody List<Task> tasksToDelete) {
         if (tasksToDelete != null) {
@@ -31,7 +31,7 @@ public class TaskController {
         return new ResponseEntity<Task>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/editTasks", method = RequestMethod.POST)
+    @RequestMapping(value = "/Task/editTasks", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Task> editTask(@RequestBody List<Task> tasksToEdit) {
         if (tasksToEdit != null) {
@@ -41,7 +41,7 @@ public class TaskController {
         return new ResponseEntity<Task>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getTasks", method = RequestMethod.GET)
+    @RequestMapping(value = "/Task/getTasks", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<List<Task>> getTasks() {
         List<Task> list = new ArrayList<>();
