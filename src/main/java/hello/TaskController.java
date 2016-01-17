@@ -24,9 +24,9 @@ public class TaskController {
 
     @RequestMapping(value = "/Task/deleteTasks", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Task> addTask(@RequestBody List<Task> tasksToDelete) {
-        if (tasksToDelete != null) {
-            taskRepository.delete(tasksToDelete);
+    public ResponseEntity<Task> deleteTask(@RequestBody Task taskToDelete) {
+        if (taskToDelete != null) {
+            taskRepository.delete(taskToDelete);
         }
         return new ResponseEntity<Task>(HttpStatus.OK);
     }

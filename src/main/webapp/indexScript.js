@@ -20,8 +20,8 @@ app.controller('mainController', function ($scope, $http, $rootScope,$mdDialog) 
     $rootScope.active = true;
     $scope.idSelectedVotes = [];
     $scope.fuckingBar = {
-        count:0,
-        isOpen:false,
+        count: 0,
+        isOpen: false,
         selectedDirection: 'left'
 
     };
@@ -30,62 +30,16 @@ app.controller('mainController', function ($scope, $http, $rootScope,$mdDialog) 
         .success(function (data) {
             $scope.tasks = data;
             var l = $scope.tasks.length;
-
-            while (l--) {
-                console.log(l);
-               $scope.toHide[l] = true;
-            };
-            console.log($scope.toHide);
         });
-    $scope.hide = function (index) {
-        console.log($scope.fuckingBar.count);
-        $scope.toHide[index] = !$scope.toHide[index];
-    };
-    $scope.addTask = function (keyEvent, value) {
-        if (keyEvent.which === 13) {
-            $http({
-                method: "post",
-                url: "/Task/addTask",
-                data: { task : value }
-            }).success(function(data){
-                  $scope.tasks.push({number: data.number, task: value});
-            });
-          
 
-            
 
-        }
-
-    }
-    $scope.select = function (idSelectedVote) {
-        index = $scope.idSelectedVotes.indexOf(idSelectedVote);
-        if (index !== -1){
-            $scope.idSelectedVotes.splice(index,1);
-            return
-        }
-        $scope.idSelectedVotes.push(idSelectedVote);
-    };
-    $scope.userSelected =  function(task){
-    return $scope.idSelectedVotes.indexOf(task.number) !== -1;
-    };
-    $scope.delete = function () {
-        toDelete = [];
-        for(i=0;i<$scope.idSelectedVotes.length;i++){
-            for(j = 0;j<$scope.tasks.length;j++){
-                if($scope.tasks[j].number===$scope.idSelectedVotes[i]){
-                    toDelete.push($scope.tasks[j]);
-                   $scope.tasks.splice(j,1); 
-                    
-            }
-              
-            }
-        }
-        $scope.idSelectedVotes = [];
+    $scope.delete = function (index) {
         $http({
-                method: "post",
-                url: "/Task/deleteTasks",
-                data: toDelete
-            });
+            method: "post",
+            url: "/Task/deleteTasks",
+            data: $scope.tasks[index]
+        });
+        $scope.tasks.splice(index, 1);
     };
     
     $scope.edit = function () {
@@ -110,31 +64,37 @@ app.controller('mainController', function ($scope, $http, $rootScope,$mdDialog) 
     $scope.showAdvanced = function(ev) {
 
         $mdDialog.show({
-                controller: DialogController,
+                controller : 'mainController',
                 templateUrl: 'dialog.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
+                scope:$scope,
                 clickOutsideToClose:true,
-            })
-            .then(function(answer) {
-                $scope.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                $scope.status = 'You cancelled the dialog.';
             })};
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
+    $scope.addTask = function (value) {
+        $http({
+            method: "post",
+            url: "/Task/addTask",
+            data: { task : value}
+        }).success(function(data){
+          $scope.tasks.push({number: data.number, task: data.task});
+        });
+        console.log($scope.tasks);
+        console.log(value);
+        $mdDialog.hide();
+    }
+    $scope.cancel = function() {
+        $scope.tasks.push({number: 123123123, task: 123123123});
+        $mdDialog.cancel();
+    };
+    $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+    };
+
 });
 app.controller('navigation', function($rootScope) {
 });
 app.controller('authorization', function($rootScope) {
     $rootScope.active = false;
 });
-function DialogController($scope, $mdDialog) {
-    $scope.hide = function() {
-        $mdDialog.hide();
-    };
-    $scope.cancel = function() {
-        $mdDialog.cancel();
-    };
-    $scope.answer = function(answer) {
-        $mdDialog.hide(answer);
-    };
-}
