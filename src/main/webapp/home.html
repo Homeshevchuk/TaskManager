@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" controller = "mainController">
 <head>
     <meta charset="UTF-8">
     <title>WebApp</title>
@@ -25,10 +25,9 @@
                     </div>
 
                 </div>
-                <md-divider  flex  ng-if="!$last"></md-divider>
+                <md-divider  flex ng-if="$index<=tasks.length"></md-divider>
 
             </md-list-item>
-        <md-divider ></md-divider>
         <!--<md-list-item class="md-3-line" ng-if="$last">
 
             <md-button class="md-icon-button" aria-label="More" style = "margin:20px;"><i class="material-icons">more_vert</i>
@@ -40,7 +39,7 @@
             </div>
         </md-list-item>-->
     </md-list>
-    <div layout = "row" layout-align = "end end">
+    <div layout = "row" layout-align = "center end" style="margin-top: 50px">
         <md-button class="md-icon-button " style = "background-color: #ff0018" aria-label="Favorite" ng-click="showAdvanced($event)">
             <i class="material-icons orange600" style="font-size: 24px;color: #f8f7ff;">add</i>
         </md-button>

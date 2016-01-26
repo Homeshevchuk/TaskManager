@@ -27,9 +27,10 @@ import org.springframework.http.HttpMethod;
 
     @Override
     public void run(String... args) throws Exception {
-        repository.save(new Task(1,"It works"));
+       /* repository.save(new Task(1,"It works"));
         repository.save(new Task(2,"It doesnt work"));
         repository.save(new Task(3,"It works"));
+*/
 
 
 

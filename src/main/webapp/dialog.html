@@ -1,5 +1,5 @@
 <md-dialog aria-label="Task editor">
-    <form>
+
         <md-toolbar style = "background-color:#ff0018 ">
             <div class="md-toolbar-tools">
                 <h2>Task editor</h2>
@@ -9,27 +9,23 @@
                 </md-button>
             </div>
         </md-toolbar>
-        <md-dialog-content style="width:800px;height:350px;">
-
-                <md-content layout ="column" layout-align="stretch stretch">
-
-                        <md-input-container flex>
-                            <label>Title</label>
-                            <input  id="taskInput" placeholder="Task text" ng-model="task"
-                                    ng-click="addTask(task)">
+        <md-dialog-content layout ="column" style="width:800px;height:350px;">
+                <md-content layout="row" flex = "100">
+                        <md-input-container class="md-block"  flex>
+                            <label>Task text</label>
+                            <input  id="taskInput" ng-model="newValue"/>
                         </md-input-container>
+                </md-content>
+            <div flex = "grow"></div>
+            <md-dialog-actions layout="row">
+                <div flex="grow"></div>
+                <md-button ng-click="cancel()">
+                    Back
+                </md-button>
+                <md-button ng-click="addTask(newValue)">
+                    Add
+                </md-button>
+            </md-dialog-actions>
+        </md-dialog-content>
 
-                            <label></label>
-        <md-dialog-actions layout="row">
-            <span flex></span>
-            <md-button ng-click="answer('Cancel')" >
-                Cancel
-            </md-button>
-            <md-button  style="margin-right:20px;" >
-                Create
-            </md-button>
-        </md-dialog-actions>
-                    </md-content>
-            </md-dialog-content>
-    </form>
 </md-dialog>
