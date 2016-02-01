@@ -1,8 +1,7 @@
 <md-dialog aria-label="Task editor">
-
         <md-toolbar style = "background-color:#ff0018 ">
             <div class="md-toolbar-tools">
-                <h2>Task editor</h2>
+                <h2>Task ediitor</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <i class="material-icons">close</i>
@@ -11,9 +10,10 @@
         </md-toolbar>
         <md-dialog-content layout ="column" style="width:800px;height:350px;">
                 <md-content layout="row" flex = "100">
-                        <md-input-container class="md-block"  flex>
+                        <md-input-container  class="md-block"  flex>
                             <label>Task text</label>
-                            <input  id="taskInput" ng-model="newValue"/>
+                            <input ng-if="adding"  ng-model="inputValue"/>
+                            <input ng-if="adding==false"  ng-model="tasks[index].task"/>
                         </md-input-container>
                 </md-content>
             <div flex = "grow"></div>
@@ -22,8 +22,11 @@
                 <md-button ng-click="cancel()">
                     Back
                 </md-button>
-                <md-button ng-click="addTask(newValue)">
+                <md-button ng-if="adding" ng-click="addTask(inputValue)">
                     Add
+                </md-button>
+                <md-button ng-if="adding==false" ng-click="editTask(inputValue)">
+                    Edit
                 </md-button>
             </md-dialog-actions>
         </md-dialog-content>

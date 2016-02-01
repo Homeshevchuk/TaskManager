@@ -22,7 +22,7 @@ public class TaskController {
         return new ResponseEntity<Task>(task, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/Task/deleteTasks", method = RequestMethod.POST)
+    @RequestMapping(value = "/Task/deleteTask", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Task> deleteTask(@RequestBody Task taskToDelete) {
         if (taskToDelete != null) {
@@ -31,12 +31,11 @@ public class TaskController {
         return new ResponseEntity<Task>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/Task/editTasks", method = RequestMethod.POST)
+    @RequestMapping(value = "/Task/editTask", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Task> editTask(@RequestBody List<Task> tasksToEdit) {
-        if (tasksToEdit != null) {
-            taskRepository.save(tasksToEdit);
-
+    public ResponseEntity<Task> editTask(@RequestBody Task taskToEdit) {
+        if (taskToEdit != null) {
+            taskRepository.save(taskToEdit);
         }
         return new ResponseEntity<Task>(HttpStatus.OK);
     }

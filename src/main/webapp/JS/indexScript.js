@@ -18,6 +18,7 @@ app.config(function($routeProvider, $locationProvider) {
     });
 app.controller('mainController', function ($scope, $http, $rootScope,$mdDialog) {
     $rootScope.active = true;
+    $scope.adding = false;
     $scope.idSelectedVotes = [];
     $scope.fuckingBar = {
         count: 0,
@@ -36,41 +37,65 @@ app.controller('mainController', function ($scope, $http, $rootScope,$mdDialog) 
     $scope.delete = function (index) {
         $http({
             method: "post",
-            url: "/Task/deleteTasks",
+            url: "/Task/deleteTask",
             data: $scope.tasks[index]
         });
         $scope.tasks.splice(index, 1);
     };
 
-    $scope.showAdvanced = function (ev) {
+    $scope.showAdvanced = function (ev,index) {
+        if(index != null){
+            $scope.adding = false;
+            $scope.index = index;
+            $scope.inputValue = $scope.tasks[index].task;
+        }else{
+            $scope.adding = true;
+            $scope.inputValue="";
+        }
         $mdDialog.show({
             scope:$scope,
             preserveScope:true,
-            templateUrl: 'dialog.html',
+            templateUrl: 'addTaskDialog.html',
             parent: angular.element(document.body),
             targetEvent: ev,
 
         });
-    };
-    $scope.hide = function () {
-        $mdDialog.hide();
-    };
-    $scope.addTask = function (value) {
-        $http({
-            method: "post",
-            url: "/Task/addTask",
-            data: {task: value}
-        }).success(function (data) {
-            $scope.tasks.push({number: data.number, task: data.task});
-        });
-        $scope.newValue = "";
-        $mdDialog.hide();
-    };
-    $scope.cancel = function() {
-        $mdDialog.cancel();
-    };
-});
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+        $scope.editTask = function (value) {
+            $http({
+                method: "post",
+                url: "/Task/editTask",
+                data: $scope.tasks[index]
+            })
+            $mdDialog.hide();
+        };
+       /* $scope.cancel = function() {
 
+            $mdDialog.cancel();
+        };*/
+        $scope.addTask = function (value) {
+            $http({
+                method: "post",
+                url: "/Task/addTask",
+                data: {number:index, task: value}
+            }).success(function (data) {
+                $scope.tasks.push({number: data.number, task: data.task});
+            });
+            $scope.inputValue = "";
+            $mdDialog.hide();
+        };
+        $scope.cancel = function() {
+            if(index!=null){
+                $scope.tasks[index].task = $scope.inputValue;
+            }
+
+            $mdDialog.cancel();
+        };
+    };
+
+});
 app.controller('navigation', function($rootScope) {
 });
 app.controller('authorization', function($rootScope) {

@@ -16,7 +16,7 @@
                     <p style="font-size:20px;padding-right: 10px;" flex = "initial">{{task.number}}</p>
                     <p flex = "grow">{{task.task}}</p>
                     <div layout = "column">
-                        <md-button class="md-icon-button "  >
+                        <md-button class="md-icon-button " ng-click="showAdvanced($event,$index)" >
                         <i class="material-icons " style="font-size: 24px;color: #ff0018;">edit</i>
                         </md-button>
                         <md-button class="md-icon-button " ng-click="delete($index)" >
