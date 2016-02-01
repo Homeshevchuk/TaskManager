@@ -1079,7 +1079,7 @@
       <workItem from="1453634898136" duration="4782000" />
       <workItem from="1453811965091" duration="7411000" />
       <workItem from="1454190883137" duration="4564000" />
-      <workItem from="1454349829501" duration="2000000" />
+      <workItem from="1454349829501" duration="2005000" />
     </task>
     <task id="LOCAL-00001" summary="Реализован функционал на сервере">
       <created>1434662477924</created>
@@ -1141,11 +1141,17 @@
       <option name="project" value="LOCAL" />
       <updated>1454352072912</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Angular">
+      <created>1454352155170</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1454352155170</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94632000" />
+    <option name="totallyTimeSpent" value="94637000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
