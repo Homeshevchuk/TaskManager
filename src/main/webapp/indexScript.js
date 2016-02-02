@@ -50,7 +50,6 @@ app.controller('mainController', function ($scope, $http, $rootScope,$mdDialog) 
             $scope.inputValue = $scope.tasks[index].task;
         }else{
             $scope.adding = true;
-            $scope.inputValue="";
         }
         $mdDialog.show({
             scope:$scope,
@@ -79,7 +78,7 @@ app.controller('mainController', function ($scope, $http, $rootScope,$mdDialog) 
             $http({
                 method: "post",
                 url: "/Task/addTask",
-                data: {number:index, task: value}
+                data: {task : value}
             }).success(function (data) {
                 $scope.tasks.push({number: data.number, task: data.task});
             });
