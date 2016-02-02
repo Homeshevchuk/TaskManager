@@ -94,7 +94,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/addTaskDialog.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.29259896">
-              <caret line="10" column="72" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
+              <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
               <folding>
                 <element signature="n#style#0;n#md-toolbar#0;n#md-dialog#0;n#!!top" expanded="true" />
               </folding>
@@ -1025,7 +1025,7 @@
       <workItem from="1454190883137" duration="4564000" />
       <workItem from="1454349829501" duration="2071000" />
       <workItem from="1454352247203" duration="316000" />
-      <workItem from="1454416388873" duration="3329000" />
+      <workItem from="1454416388873" duration="3454000" />
     </task>
     <task id="LOCAL-00001" summary="Реализован функционал на сервере">
       <created>1434662477924</created>
@@ -1147,11 +1147,17 @@
       <option name="project" value="LOCAL" />
       <updated>1454419570809</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="MobileDevices">
+      <created>1454419725407</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1454419725407</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98348000" />
+    <option name="totallyTimeSpent" value="98473000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1608,7 +1614,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/addTaskDialog.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29259896">
-          <caret line="10" column="72" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
+          <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
           <folding>
             <element signature="n#style#0;n#md-toolbar#0;n#md-dialog#0;n#!!top" expanded="true" />
           </folding>
