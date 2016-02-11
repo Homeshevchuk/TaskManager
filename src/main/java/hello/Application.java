@@ -61,7 +61,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().
                 antMatchers("/Task/**").authenticated().
-                antMatchers("/**").permitAll();
+                antMatchers("/**").permitAll().and()
+                .csrf().disable();
 
 
 
