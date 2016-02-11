@@ -3,7 +3,7 @@
  */
 var app = angular.module('application', ['ngRoute','ngMaterial','ngMdIcons','ngAnimate','ngAnimate']);
 
-app.config(function($routeProvider, $locationProvider) {
+app.config(function($routeProvider, $locationProvider,$httpProvider) {
     $locationProvider.html5Mode({
         enabled:true
     });
@@ -14,7 +14,7 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl : 'login_page.html',
             controller : 'authorization'
         }).otherwise({redirectTo:'/login'});
-
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     });
 app.controller('mainController', function ($rootScope,$scope, $http,$mdDialog,$location) {
     $scope.adding = false;
@@ -90,6 +90,7 @@ app.controller('authorization', function($rootScope,$scope,$http,$location) {
         $http.get("/Task/getTasks", {headers : headers}).success(function(data) {
             $location.path("/home");
         }).error(function() {
+            console.log("shit");
         });
 
     }
