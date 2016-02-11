@@ -1,17 +1,28 @@
 package hello;
 
+import hello.Account.Account;
+import hello.Account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 
         import org.springframework.boot.SpringApplication;
-        import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.repository.Repository;
-import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
+import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 
 @SpringBootApplication
@@ -30,15 +41,34 @@ import org.springframework.http.HttpMethod;
        repository.save(new Task(1,"It works"));
         repository.save(new Task(2,"It doesnt work"));
         repository.save(new Task(3,"It works"));
-
-
-
-
-        System.out.println("Customers found with findAll():");
+        accountRepository.save(new Account("Bob","password","Admin"));
+        accountRepository.save(new Account("Homeshevchuk","password","Admin"));
         System.out.println("-------------------------------");
         for (Task task : repository.findAll()) {
             System.out.println(task);
         }
         System.out.println();
     }
+}
+@Configuration
+@EnableWebSecurity
+class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .httpBasic()
+                .and()
+                .authorizeRequests().
+                antMatchers("/Task/**").authenticated().
+                antMatchers("/**").permitAll();
+
+
+
+    }
+    @Autowired
+    public void ConfigureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+    }
+
 }

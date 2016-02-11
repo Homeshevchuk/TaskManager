@@ -17,18 +17,18 @@
                         </md-input-container>
                 </md-content>
             <div flex = "grow"></div>
-            <md-dialog-actions layout="row">
-                <div flex="grow"></div>
-                <md-button ng-click="cancel()">
-                    Back
-                </md-button>
-                <md-button ng-if="adding" ng-click="addTask($parent.inputValue)">
-                    Add
-                </md-button>
-                <md-button ng-if="adding==false" ng-click="editTask(inputValue)">
-                    Edit
-                </md-button>
-            </md-dialog-actions>
-        </md-dialog-content>
 
+        </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <div flex="grow"></div>
+        <md-button ng-click="cancel()">
+            Back
+        </md-button>
+        <md-button ng-if="adding" ng-click="addTask($parent.inputValue)">
+            Add
+        </md-button>
+        <md-button ng-if="adding==false" ng-click="editTask(inputValue)">
+            Edit
+        </md-button>
+    </md-dialog-actions>
 </md-dialog>

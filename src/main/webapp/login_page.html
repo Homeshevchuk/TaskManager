@@ -1,0 +1,19 @@
+<html ng-app="application" controller = "authorization">
+<head>
+
+</head>
+<div layout="column" style="height: 500px">
+            <md-input-container  class="md-block"  >
+                <label>Username</label>
+                <input ng-model="credentials.username"/>
+            </md-input-container>
+            <md-input-container  class="md-block"  >
+                <label>Password</label>
+                <input type="password"  ng-model = "credentials.password"/>
+            </md-input-container>
+    <md-button  ng-click="authorization(credentials)">
+        Log In
+    </md-button>
+</div>
+
+</html>

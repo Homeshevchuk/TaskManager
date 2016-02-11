@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="application">
 <head>
     <meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hello AngularJS</title>
@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <base href="/">
 </head>
 
-<body ng-app="application" ng-cloak class="ng-cloak">
+<body >
+
 <md-toolbar style = "background-color: #ff0018">
     <div class="md-toolbar-tools">
         <h2>
@@ -26,8 +27,7 @@
         <md-button class="md-icon-button" aria-label="Favorite" ng-class="{'active' : active}"><a href="/home"><i class="material-icons">home</i></a>
 
         </md-button>
-        <md-button class="md-icon-button" aria-label="More"ng-class="{'active' : active}"><a href="/login"><i class="material-icons">more_vert</i></a>
-
+        <md-button class="md-icon-button" ng-show="authorization"  aria-label="More" ng-class="{'active' : active}"><a href="/login"><i class="material-icons">more_vert</i></a>
         </md-button>
     </div>
 </md-toolbar>
@@ -46,5 +46,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script>
 <script src="/indexScript.js"></script>
+
 </body>
 </html>
