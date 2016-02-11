@@ -3,7 +3,7 @@
  */
 var app = angular.module('application', ['ngRoute','ngMaterial','ngMdIcons','ngAnimate','ngAnimate']);
 
-app.config(function($routeProvider, $locationProvider,$httpProvider) {
+app.config(function($routeProvider, $locationProvider,$httpProvider,$mdThemingProvider) {
     $locationProvider.html5Mode({
         enabled:true
     });
@@ -15,6 +15,9 @@ app.config(function($routeProvider, $locationProvider,$httpProvider) {
             controller : 'authorization'
         }).otherwise({redirectTo:'/login'});
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+    $mdThemingProvider.theme('default')
+        .primaryPalette('red').accentPalette('red');
+
     });
 app.controller('mainController', function ($rootScope,$scope, $http,$mdDialog,$location) {
     $scope.adding = false;
