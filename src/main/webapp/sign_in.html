@@ -1,0 +1,37 @@
+<html >
+<head>
+</head>
+<body ng-app="application" ng-controller = "signIn">
+<div layout = "row" style="height: 100%">
+    <div flex = "30"  hide-xs hide-sm hide-md></div>
+    <form name="regForm" flex="noshrink" layout="column" layout-align = "center">
+        <div flex hide-xs hide-sm hide-md></div>
+        <md-input-container class="md-block">
+            <label>Username</label>
+            <input required name="username" ng-model="credentials.username">
+
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>Password</label>
+            <input  type = "password" name = "p1" ng-model="credentials.password">
+        </md-input-container>
+        <md-input-container >
+            <label>Confirm password</label>
+            <input  type="password" name = "p2"  ng-model = "credentials.passwordRpt" ng-pattern="{{credentials.password}}"/>
+            <div ng-messages="regForm.p2.$error">
+                <div ng-message = "pattern">По русски же написано Confirm password</div>
+            </div>
+        </md-input-container>
+        <md-button class="md-accent"  ng-click="registration(credentials)">
+            Ok
+        </md-button>
+        <md-button class="md-accent"  ng-href="/login">
+            Back
+        </md-button>
+        <div flex ></div>
+    </form>
+    <div flex = "30"  hide-xs hide-sm hide-md ></div>
+</div>
+</body>
+</html>

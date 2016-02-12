@@ -20,7 +20,7 @@ public class TaskController {
         if (task != null) {
             taskRepository.save(task);
         }
-        return new ResponseEntity<Task>(task, HttpStatus.OK);
+        return new ResponseEntity<>(task, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/Task/deleteTask", method = RequestMethod.POST)
@@ -29,7 +29,7 @@ public class TaskController {
         if (taskToDelete != null) {
             taskRepository.delete(taskToDelete);
         }
-        return new ResponseEntity<Task>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/Task/editTask", method = RequestMethod.POST)
@@ -38,7 +38,7 @@ public class TaskController {
         if (taskToEdit != null) {
             taskRepository.save(taskToEdit);
         }
-        return new ResponseEntity<Task>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/Task/getTasks", method = RequestMethod.GET)
@@ -48,7 +48,7 @@ public class TaskController {
         for (Task task : taskRepository.findAll()) {
             list.add(task);
         }
-        return new ResponseEntity<List<Task>>(list, HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
 

@@ -1,7 +1,5 @@
 package hello.Account;
 
-import org.springframework.context.annotation.Bean;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,7 +11,6 @@ import javax.persistence.Id;
 public class Account {
     private String username;
     private String password;
-    private String role;
     @Id
     @GeneratedValue
     private long id;
@@ -21,10 +18,9 @@ public class Account {
     public Account() {
     }
 
-    public Account(String username, String password, String role) {
+    public Account(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = role;
     }
     public String getUsername() {
         return username;

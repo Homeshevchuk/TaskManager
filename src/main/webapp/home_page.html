@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="application" controller = "mainController">
+<html lang="en" ng-app="application" ng-controller = "mainController">
 <head>
     <meta charset="UTF-8">
     <title>WebApp</title>
@@ -13,7 +13,7 @@
           <md-button class="md-icon-button" style = "margin: 16px" aria-label="More" ><i class="material-icons">more_vert</i>-->
 
                 <div  class="md-list-item-text" layout = "row"  layout-align="start center"  >
-                    <p style="font-size:20px;padding-right: 10px;" flex = "initial">{{task.number}}</p>
+                    <p style="font-size:20px;padding: 10px;" flex = "initial">{{task.number}}</p>
                     <p flex = "grow">{{task.task}}</p>
                     <div layout = "column">
                         <md-button class="md-icon-button " ng-click="showAdvanced($event,$index)" >

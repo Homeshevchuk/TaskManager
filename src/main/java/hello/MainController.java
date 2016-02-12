@@ -17,6 +17,10 @@ public class MainController {
     public String method2() {
         return ("/");
     }
+    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
+    public String method3() {
+        return ("/");
+    }
     /*@RequestMapping(value = "/login", method = RequestMethod.GET)
     public String method2() {
         return ("/index");

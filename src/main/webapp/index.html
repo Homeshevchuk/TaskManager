@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="application">
+<html>
 <head>
     <meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hello AngularJS</title>
@@ -10,8 +10,7 @@
 
     <base href="/">
 </head>
-
-<body >
+<body  ng-app="application"  ng-controller = "navBar">
 
 <md-toolbar   style = "background-color: #ff0018;" >
     <div class="md-toolbar-tools">
@@ -19,10 +18,7 @@
             <span>Task List</span>
         </h2>
         <span flex></span>
-        <md-button class="md-icon-button" aria-label="Favorite" ng-class="{'active' : active}"><a href="/home"><i class="material-icons">home</i></a>
-
-        </md-button>
-        <md-button class="md-icon-button" ng-show="authorization"  aria-label="More" ng-class="{'active' : active}"><a href="/login"><i class="material-icons">more_vert</i></a>
+        <md-button class="md-icon-button" ng-show="authorized" ng-click="logout()"><i class="material-icons" style="font-size: 24px">exit_to_app</i>
         </md-button>
     </div>
 </md-toolbar>

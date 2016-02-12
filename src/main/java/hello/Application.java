@@ -41,35 +41,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
        repository.save(new Task(1,"It works"));
         repository.save(new Task(2,"It doesnt work"));
         repository.save(new Task(3,"It works"));
-        accountRepository.save(new Account("Bob","password","Admin"));
-        accountRepository.save(new Account("Homeshevchuk","password","Admin"));
         System.out.println("-------------------------------");
         for (Task task : repository.findAll()) {
             System.out.println(task);
         }
         System.out.println();
-    }
-}
-@Configuration
-@EnableWebSecurity
-class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .httpBasic()
-                .and()
-                .authorizeRequests().
-                antMatchers("/Task/**").authenticated().
-                antMatchers("/**").permitAll().and()
-                .csrf().disable();
-
-
-
-    }
-    @Autowired
-    public void ConfigureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
     }
 
 }
