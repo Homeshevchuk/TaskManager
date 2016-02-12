@@ -122,7 +122,7 @@ app.controller('navBar', function($rootScope,$scope,$http,$location) {
         });
     };
 });
-app.controller('signIn', function($rootScope,$scope,$http,$location) {
+app.controller('signIn', function($rootScope,$scope,$http,$location,$mdToast) {
     $scope.registration = function(credentials){
         if(credentials.password == credentials.passwordRpt) {
             $scope.match = true;
@@ -130,7 +130,8 @@ app.controller('signIn', function($rootScope,$scope,$http,$location) {
                 username: credentials.username,
                 password: credentials.password
             }).success(function (data) {
-
+                $mdToast.show($mdToast.simple().textContent("Ладно, проходи!"));
+                $location.path("\login");
             }).error(function (data) {
                 console.log(data.value);
             });

@@ -3,7 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/home_page.html" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/indexScript.js" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/ind1exScript.js" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/indexScript.js" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
