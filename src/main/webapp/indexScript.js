@@ -130,7 +130,7 @@ app.controller('signIn', function($rootScope,$scope,$http,$location,$mdToast) {
                 username: credentials.username,
                 password: credentials.password
             }).success(function (data) {
-                $mdToast.show($mdToast.simple().textContent("Ладно, проходи!"));
+                $mdToast.show($mdToast.simple().textContent("Понял, принял!"));
                 $location.path("\login");
             }).error(function (data) {
                 console.log(data.value);
