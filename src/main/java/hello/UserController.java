@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 /**
  * Created by Bogdan on 2/12/2016.
  */
@@ -33,6 +35,8 @@ public class UserController {
 
             return new ResponseEntity<>("{\"value\":\"Taken\"}",HttpStatus.BAD_REQUEST);
         }else{
+            ArrayList<Task> taskArrayList= new ArrayList<>();
+            account.setTaskList(taskArrayList);
             repository.save(account);
             return new ResponseEntity<>(HttpStatus.OK);
 

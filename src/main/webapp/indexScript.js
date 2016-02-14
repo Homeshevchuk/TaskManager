@@ -67,7 +67,7 @@ app.controller('mainController', function ($rootScope,$scope, $http,$mdDialog,$l
                 $http({
                     method: "post",
                     url: "/Task/editTask",
-                    data: $scope.tasks[index]
+                    data: $scope.tasks[$scope.index]
                 })
                 $mdDialog.hide();
             };
@@ -77,7 +77,7 @@ app.controller('mainController', function ($rootScope,$scope, $http,$mdDialog,$l
                     url: "/Task/addTask",
                     data: {task: value}
                 }).success(function (data) {
-                    $scope.tasks.push({number: data.number, task: data.task});
+                    $scope.tasks.push(data);
                 });
                 $scope.inputValue = "";
                 $mdDialog.hide();

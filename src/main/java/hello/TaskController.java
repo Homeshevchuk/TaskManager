@@ -1,54 +1,70 @@
 package hello;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import hello.Account.Account;
+import hello.Account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class TaskController {
+  /*  @Autowired
+    private TaskRepository taskRepository;*/
     @Autowired
-    private TaskRepository taskRepository;
-
+    private AccountRepository userRepository;
     @RequestMapping(value = "/Task/addTask", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Task> addTask(@RequestBody Task task) {
+    public ResponseEntity<Task> addTask(@RequestBody Task task, Principal principal) {
+        Account account = userRepository.findByUsername(principal.getName());
         if (task != null) {
-            taskRepository.save(task);
+
+            account.getTaskList().add(task);
+            userRepository.save(account);
         }
-        return new ResponseEntity<>(task, HttpStatus.OK);
+        return new ResponseEntity<>(account.getTaskList().get(account.getTaskList().size()-1), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/Task/deleteTask", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Task> deleteTask(@RequestBody Task taskToDelete) {
+    public ResponseEntity<Task> deleteTask(@RequestBody Task taskToDelete,Principal principal) {
         if (taskToDelete != null) {
-            taskRepository.delete(taskToDelete);
+           Account account = userRepository.findByUsername(principal.getName());
+           account.getTaskList().remove(taskToDelete);
+           userRepository.save(account);
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/Task/editTask", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Task> editTask(@RequestBody Task taskToEdit) {
+    public ResponseEntity<Task> editTask(@RequestBody Task taskToEdit,Principal principal) {
         if (taskToEdit != null) {
-            taskRepository.save(taskToEdit);
+            Account account = userRepository.findByUsername(principal.getName());
+            for(Task task:account.getTaskList()){
+                if(task.getId()==taskToEdit.getId()){
+                    int index = account.getTaskList().indexOf(task);
+                    account.getTaskList().remove(index);
+                    account.getTaskList().add(index,taskToEdit);
+                }
+            }
+            userRepository.save(account);
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/Task/getTasks", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<List<Task>> getTasks() {
-        List<Task> list = new ArrayList<>();
-        for (Task task : taskRepository.findAll()) {
-            list.add(task);
-        }
-        return new ResponseEntity<>(list, HttpStatus.OK);
+    public ResponseEntity<List<Task>> getTasks(Principal principal) {
+        List<Task> list = userRepository.findByUsername(principal.getName()).getTaskList();
+       return   new ResponseEntity<>(list, HttpStatus.OK);
     }
 
 

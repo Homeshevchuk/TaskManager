@@ -24,8 +24,7 @@ import javax.management.relation.Role;
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AccountRepository repository;
-    @Autowired
-    TaskRepository taskRepository;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

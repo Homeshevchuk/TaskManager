@@ -24,11 +24,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.ArrayList;
+
 
 @SpringBootApplication
     public class Application implements CommandLineRunner{
-    @Autowired
-    TaskRepository repository;
+   /* @Autowired
+    TaskRepository repository;*/
     @Autowired
     AccountRepository accountRepository;
     public static void main(String[] args) {
@@ -38,14 +40,22 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
     @Override
     public void run(String... args) throws Exception {
-       repository.save(new Task(1,"It works"));
+     /*  repository.save(new Task(1,"It works"));
         repository.save(new Task(2,"It doesnt work"));
-        repository.save(new Task(3,"It works"));
-        System.out.println("-------------------------------");
+        repository.save(new Task(3,"It works"));*/
+       /* System.out.println("-------------------------------");
         for (Task task : repository.findAll()) {
             System.out.println(task);
         }
-        System.out.println();
+        System.out.println();*/
+      /*  Account account = new Account();
+        account.setUsername("Liza");
+        account.setPassword("Liza123");
+        ArrayList<Task> initial = new ArrayList<>();
+        Task task = new Task(0,"123");
+        initial.add(task);
+        account.setTaskList(initial);
+        accountRepository.save(account);*/
     }
 
 }

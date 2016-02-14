@@ -10,24 +10,17 @@ import javax.persistence.*;
 public class Task {
     @Id
     @GeneratedValue
-    private long number;
+    @Column(name = "id")
+    private long id;
+    @Column(name="task")
     private String task;
-
     public Task() {
 
     }
 
     public Task(int id, String value) {
-        this.number = id;
+        this.id = id;
         this.task = value;
-    }
-
-    public long getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public String getTask() {
@@ -38,29 +31,38 @@ public class Task {
         this.task = task;
     }
 
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Task)) return false;
 
         Task task1 = (Task) o;
 
-        if (number != task1.number) return false;
-        return !(task != null ? !task.equals(task1.task) : task1.task != null);
+        if (getId() != task1.getId()) return false;
+        return getTask() != null ? getTask().equals(task1.getTask()) : task1.getTask() == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (number ^ (number >>> 32));
-        result = 31 * result + (task != null ? task.hashCode() : 0);
+        int result = (int) (getId() ^ (getId() >>> 32));
+        result = 31 * result + (getTask() != null ? getTask().hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Task{" +
-                "number=" + number +
+                "id=" + id +
                 ", task='" + task + '\'' +
                 '}';
     }
