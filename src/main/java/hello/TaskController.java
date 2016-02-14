@@ -2,6 +2,7 @@ package hello;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import hello.Account.Account;
@@ -16,14 +17,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class TaskController {
-  /*  @Autowired
-    private TaskRepository taskRepository;*/
+    @Autowired
+    private TaskRepository taskRepository;
     @Autowired
     private AccountRepository userRepository;
     @RequestMapping(value = "/Task/addTask", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Task> addTask(@RequestBody Task task, Principal principal) {
         Account account = userRepository.findByUsername(principal.getName());
+      Iterator<Task> it = taskRepository.findAll().iterator();
+        while (it.hasNext()){
+          Task task1 = it.next();
+        }
         if (task != null) {
 
             account.getTaskList().add(task);
@@ -39,6 +44,10 @@ public class TaskController {
            Account account = userRepository.findByUsername(principal.getName());
            account.getTaskList().remove(taskToDelete);
            userRepository.save(account);
+        }
+        Iterator<Task> it = taskRepository.findAll().iterator();
+        while (it.hasNext()){
+            Task task1 = it.next();
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -12,13 +12,13 @@
 </head>
 <body  ng-app="application"  ng-controller = "navBar" ng-cloak>
 
-<md-toolbar   style = "background-color: #ff0018;" >
+<md-toolbar class =" md-whiteframe-5dp"  style = "background-color: #ff0018;" >
     <div class="md-toolbar-tools">
         <h2>
             <span>Task List</span>
         </h2>
         <span flex></span>
-        <md-button class="md-icon-button" ng-show="authorized" ng-click="logout()"><i class="material-icons" style="font-size: 24px">exit_to_app</i>
+        <md-button class="md-icon-button " ng-show="authorized" ng-click="logout()"><i class="material-icons" style="font-size: 24px">exit_to_app</i>
         </md-button>
     </div>
 </md-toolbar>
@@ -28,6 +28,7 @@
         <li ng-class="{'active' : !active}"><a href="/login">login</a></li>
     </ul>
 </div>-->
+
 <div ng-view style=" height: calc(100% - 70px);"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
