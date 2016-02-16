@@ -1,5 +1,7 @@
 package hello;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -12,15 +14,20 @@ public class Task {
     @GeneratedValue
     @Column(name = "id")
     private long id;
+    @JsonIgnore
+    @Column(name = "owner_id")
+    private long ownerId;
     @Column(name="task")
     private String task;
+
     public Task() {
 
     }
 
-    public Task(int id, String value) {
+    public Task(int id, String value,long ownerId) {
         this.id = id;
         this.task = value;
+        this.ownerId = ownerId;
     }
 
     public String getTask() {
@@ -38,6 +45,14 @@ public class Task {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(long ownerId) {
+        this.ownerId = ownerId;
     }
 
     @Override

@@ -19,10 +19,10 @@ app.config(function($routeProvider, $locationProvider,$httpProvider,$mdThemingPr
         }).otherwise({redirectTo:'/login'});
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     $mdThemingProvider.theme('default')
-        .primaryPalette('red').accentPalette('red');
+        .primaryPalette('purple').accentPalette('purple');
 
     });
-app.controller('mainController', function ($rootScope,$scope, $http,$mdDialog,$location) {
+app.controller('mainController', function ($rootScope,$scope, $http,$mdDialog,$location,$mdSidenav) {
     $scope.adding = false;
 
     if(!$rootScope.authorized) {
@@ -43,6 +43,9 @@ app.controller('mainController', function ($rootScope,$scope, $http,$mdDialog,$l
             });
             $scope.tasks.splice(index, 1);
         };
+    $scope.openLeftMenu = function() {
+        $mdSidenav('left').toggle();
+    };
 
         $scope.showAdvanced = function (ev, index) {
             if (index != null) {

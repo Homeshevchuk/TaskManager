@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         import org.springframework.boot.SpringApplication;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.RequestEntity;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
@@ -35,27 +36,13 @@ import java.util.ArrayList;
     AccountRepository accountRepository;
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-
     }
 
     @Override
     public void run(String... args) throws Exception {
-     /*  repository.save(new Task(1,"It works"));
-        repository.save(new Task(2,"It doesnt work"));
-        repository.save(new Task(3,"It works"));*/
-       /* System.out.println("-------------------------------");
-        for (Task task : repository.findAll()) {
-            System.out.println(task);
-        }
-        System.out.println();*/
-      /*  Account account = new Account();
-        account.setUsername("Liza");
-        account.setPassword("Liza123");
-        ArrayList<Task> initial = new ArrayList<>();
-        Task task = new Task(0,"123");
-        initial.add(task);
-        account.setTaskList(initial);
-        accountRepository.save(account);*/
+        Account account = new Account("Bob","123");
+        account.setTaskList(new ArrayList<Task>());
+    accountRepository.save(account);
     }
 
 }

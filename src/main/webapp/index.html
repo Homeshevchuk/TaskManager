@@ -12,7 +12,7 @@
 </head>
 <body  ng-app="application"  ng-controller = "navBar" ng-cloak>
 
-<md-toolbar class =" md-whiteframe-5dp"  style = "background-color: #ff0018;" >
+<md-toolbar class =" md-whiteframe-5dp"  style = "background-color: #f44336; z-index: 60" >
     <div class="md-toolbar-tools">
         <h2>
             <span>Task List</span>
@@ -22,6 +22,10 @@
         </md-button>
     </div>
 </md-toolbar>
+<md-content  style=" height: calc(100% - 64px);">
+    <div ng-view style="height: 100%"></div>
+</md-content>
+
 <!--<div ng-controller="navigation" class="container">
     <ul class="nav nav-pills" role="tablist">
         <li ng-class="{'active' : active}"><a href="/home">home</a></li>
@@ -29,7 +33,7 @@
     </ul>
 </div>-->
 
-<div ng-view style=" height: calc(100% - 70px);"></div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="/angular-route.min.js"></script>

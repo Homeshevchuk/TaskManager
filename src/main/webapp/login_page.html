@@ -4,13 +4,13 @@
 <body ng-cloak>
 <div layout = "row" style="height: 100%">
     <div flex = "30"  hide-xs hide-sm hide-md></div>
-    <div flex layout="column">
+    <div flex layout="column" >
                 <div flex hide-xs hide-sm hide-md></div>
-                <md-input-container >
+                <md-input-container style = "margin: 18px 0px 0px 0px">
                     <label>Username</label>
                     <input ng-model="credentials.username"/>
                 </md-input-container>
-                <md-input-container  style="border-color: #ff0112">
+                <md-input-container  style="border-color: #ff0112; margin: 18px 0px 0px 0px">
                     <label>Password</label>
                     <input  type="password"  ng-model = "credentials.password"/>
                 </md-input-container>
