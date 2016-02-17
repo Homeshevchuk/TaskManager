@@ -1,50 +1,68 @@
+
 <!DOCTYPE html>
 <html lang="en" ng-app="application" ng-controller = "mainController">
 <head>
     <meta charset="UTF-8">
     <title>WebApp</title>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+
 </head>
 <body style="margin-top: 5%" ng-cloak>
 
-    <div layout = "row" style="height: 100%" ng-cloak>
-        <md-sidenav md-component-id="left" class="md-sidenav-left" style = "background-color: rgb(249, 255, 251);z-index : 59">
-            Left Nav!
+    <div layout = "row" style="height: 100%">
+
         </md-sidenav>
         <div flex = "15"  hide-xs hide-sm hide-md></div>
         <div flex layout="column" style="z-index: 8">
             <md-list>
                 <md-list-item class="md-3-line" ng-repeat="task in tasks" ng-cloak  style ="margin: 5px ">
                     <div  class="md-list-item-text md-whiteframe-2dp "  layout = "row"  layout-align="start center">
-                        <p style="font-size:24px;padding: 10px;color:#E53935" flex = "initial">{{$index+1}}</p>
+                        <p style="font-size:24px;padding: 10px;color:#81c784" flex = "initial">{{$index+1}}</p>
                         <p flex = "grow" style="font-size: 22px;font-family: Roboto">{{task.task}}</p>
                         <div layout = "column">
                             <md-button class="md-icon-button " ng-click="showAdvanced($event,$index)" >
-                                <i class="material-icons " style="font-size: 24px;color: #ff0018;">edit</i>
+                                <i class="material-icons " style="font-size: 24px;color: #81c784;">edit</i>
                             </md-button>
                             <md-button class="md-icon-button " ng-click="delete($index)" >
-                                <i class="material-icons " style="font-size: 24px;color: #ff0018;">delete</i>
+                                <i class="material-icons " style="font-size: 24px;color: #81c784;">delete</i>
                             </md-button>
                         </div>
-                        <div layout = column  layout-align="center center"
-                        >
+                        <div layout = column  layout-align="center center">
+
                             <md-button class="md-icon-button " ng-click="delete($index)" >
-                                <i class="material-icons " style="font-size: 24px;color: #ff0018;">share</i>
+                                <i class="material-icons " style="font-size: 24px;color: #81c784;">share</i>
                             </md-button>
                         </div>
+
                     </div>
-
-
                 </md-list-item>
             </md-list>
             <div layout = "row" layout-align = "center" style="margin: 10px">
-                <md-button class="md-icon-button md-whiteframe-2dp" style = "background-color: #ff0018" aria-label="Favorite" ng-click="showAdvanced($event)">
+                <md-button class="md-icon-button md-whiteframe-2dp" style = "background-color: #81c784" aria-label="Favorite" ng-click="showAdvanced($event)">
                     <i class="material-icons orange600" style="font-size: 24px;color: #f8f7ff;">add</i>
                 </md-button>
             </div>
         </div>
         <div flex = "15"  hide-xs hide-sm hide-md ng-click="openLeftMenu()"></div>
+        <md-sidenav  md-component-id="left" class="md-sidenav-left" style = "background-color: rgb(249, 255, 251);z-index : 59">
+            <md-content  layout = "column" layout-align = "start center" style="height: 100%;">
+                <div flex = "10"></div>
+                <ng-letter-avatar ng-if="user.ok" data="{{user.name}}"  alphabetcolors="customColors" shape = "round" fontsize="150" height = "200" width = "200"></ng-letter-avatar>
+                <!--<div layout = "row" layout-align="start center">
+                    <md-input-container    >
+                        <label>{{user.name}}</label>
+                        <input  ng-model="tasks[index].task"/>
+                    </md-input-container>
+                    <md-button class="md-icon-button " ng-click="addFriend()" >
+                        &lt;!&ndash;<i class="material-icons " style="font-size: 15px;color: #81c784;">person add</i>&ndash;&gt;
+                        <i class="material-icons" style=";color: #81c784;">person_add</i>
+                    </md-button>
+                </div>-->
+
+            </md-content>
+        </md-sidenav>
     </div>
+
 
 
 

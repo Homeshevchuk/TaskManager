@@ -1,5 +1,6 @@
 package hello.Account;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import hello.Task;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.CascadeType;
@@ -15,7 +16,9 @@ import java.util.List;
  */
 @Entity
 public class Account implements Serializable {
+    @Column
     private String username;
+    @Column
     private String password;
     @Id
     @GeneratedValue
@@ -26,8 +29,10 @@ public class Account implements Serializable {
     @JoinTable(name = "users_tasks",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "task_id"))
-
     private List<Task> taskList;
+    @OneToMany(mappedBy = "firstFriendId")
+    @Cascade(CascadeType.ALL)
+    private List<Friendship> friendships;
     public Account() {
     }
 
@@ -65,6 +70,15 @@ public class Account implements Serializable {
 
     public void setTaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
+    }
+
+
+    public List<Friendship> getFriendships() {
+        return friendships;
+    }
+
+    public void setFriendships(List<Friendship> friendships) {
+        this.friendships = friendships;
     }
 
     @Override

@@ -12,13 +12,13 @@
 </head>
 <body  ng-app="application"  ng-controller = "navBar" ng-cloak>
 
-<md-toolbar class =" md-whiteframe-5dp"  style = "background-color: #f44336; z-index: 60" >
+<md-toolbar class =" md-whiteframe-5dp"  style = "background-color: rgba(76, 175, 80, 0.76); z-index: 60" >
     <div class="md-toolbar-tools">
-        <h2>
+        <h2 style="color: white">
             <span>Task List</span>
         </h2>
         <span flex></span>
-        <md-button class="md-icon-button " ng-show="authorized" ng-click="logout()"><i class="material-icons" style="font-size: 24px">exit_to_app</i>
+        <md-button class="md-icon-button " ng-show="authorized" ng-click="logout()"><i class="material-icons" style="font-size: 24px;color:white">exit_to_app</i>
         </md-button>
     </div>
 </md-toolbar>
@@ -37,6 +37,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="/angular-route.min.js"></script>
+<script src="/ngletteravatar.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>

@@ -2,6 +2,7 @@ package hello;
 
 import hello.Account.Account;
 import hello.Account.AccountRepository;
+import hello.Account.Friendship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -42,7 +43,9 @@ import java.util.ArrayList;
     public void run(String... args) throws Exception {
         Account account = new Account("Bob","123");
         account.setTaskList(new ArrayList<Task>());
+       account.setFriendships(new ArrayList<Friendship>());
     accountRepository.save(account);
+
     }
 
 }
