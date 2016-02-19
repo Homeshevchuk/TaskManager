@@ -1,45 +1,45 @@
 package hello.Account;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import hello.Task;
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.CascadeType;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.neo4j.ogm.annotation.GraphId;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Property;
+import org.neo4j.ogm.annotation.Relationship;
 
-import javax.persistence.*;
-import javax.persistence.Entity;
+
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Bogdan on 1/9/2016.
  */
-@Entity
+@NodeEntity(label = "Account")
 public class Account implements Serializable {
-    @Column
+    @GraphId(name = "Id")
+    private Long id;
+    @Property(name = "Username")
     private String username;
-    @Column
+    @Property(name = "Password")
+    @JsonIgnore
     private String password;
-    @Id
-    @GeneratedValue
-    @Column(name = "user_id")
-    private long id;
-    @ManyToMany
-    @Cascade(CascadeType.MERGE)
-    @JoinTable(name = "users_tasks",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_id"))
+    @Relationship(type = "OWNS")
     private List<Task> taskList;
-    @OneToMany(mappedBy = "firstFriendId")
-    @Cascade(CascadeType.ALL)
-    private List<Friendship> friendships;
+    @Relationship(type = "FriendWith", direction = Relationship.OUTGOING)
+    private List<Account> friends;
     public Account() {
     }
 
-    public Account(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public Long getId() {
+        return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -47,63 +47,52 @@ public class Account implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
-
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
-
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public List<Task> getTaskList() {
         return taskList;
     }
 
-    public void setTaskList(ArrayList<Task> taskList) {
+    public void setTaskList(List<Task> taskList) {
         this.taskList = taskList;
     }
 
-
-    public List<Friendship> getFriendships() {
-        return friendships;
+    public List<Account> getFriends() {
+        return friends;
     }
 
-    public void setFriendships(List<Friendship> friendships) {
-        this.friendships = friendships;
+    public void setFriends(List<Account> friends) {
+        this.friends = friends;
     }
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (!(o instanceof Account)) return false;
 
         Account account = (Account) o;
 
-        return getId() == account.getId();
+        return getId() != null ? getId().equals(account.getId()) : account.getId() == null;
 
     }
-
     @Override
     public int hashCode() {
-        return (int) (getId() ^ (getId() >>> 32));
+        return getId() != null ? getId().hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "Account{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", id=" + id +
                 '}';
     }
 }

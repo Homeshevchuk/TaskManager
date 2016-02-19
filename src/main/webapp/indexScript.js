@@ -30,7 +30,43 @@ app.controller('mainController', function ($rootScope,$scope, $http,$mdDialog,$l
     }
 
     load();
-    $scope.addFriend = function(){
+    $scope.addFriend = function(val){
+
+        $http({
+            method: "post",
+            url: "/addFriend",
+            data: val
+        }).success(function(){
+            $scope.user.friends.requestsFromUser.push(val);
+
+        });
+        $scope.friendName = ""
+    }
+    $scope.acceptFriendRequest = function(index){
+
+        $http({
+            method: "post",
+            url: "/addFriend",
+            data: $scope.user.friends.requestsToUser[index]
+        }).success(function(){
+            $scope.user.friends.friends.push($scope.user.friends.requestsToUser[index]);
+            $scope.user.friends.requestsToUser.splice(index,1);
+
+        });
+
+
+    }
+    $scope.deleteFriend = function(index){
+        $http({
+            method: "post",
+            url: "/deleteFriend",
+            data: $scope.user.friends.friends[index]
+        }).success(function(){
+            $scope.user.friends.friends.splice(index,1);
+
+        });
+
+
     }
     function load() {
             console.log("load");
@@ -38,7 +74,7 @@ app.controller('mainController', function ($rootScope,$scope, $http,$mdDialog,$l
                 .success(function (data) {
                     console.log("get");
                     $scope.tasks = data.taskList;
-                    $scope.user = {name:data.username,friendships:data.friendships}
+                    $scope.user = {name:data.username}
                     $scope.user.ok=true;
                 });
         };
@@ -52,7 +88,13 @@ app.controller('mainController', function ($rootScope,$scope, $http,$mdDialog,$l
         };
     $scope.openLeftMenu = function() {
         $mdSidenav('left').toggle();
+        $http({
+            method: "get",
+            url: "/getFriends"
+        }).success(function (data){
+          $scope.user.friends = data;
 
+        });
     };
 
         $scope.showAdvanced = function (ev, index) {
@@ -112,10 +154,10 @@ app.controller('authorization', function($rootScope,$scope,$http,$location) {
         + btoa(credentials.username + ":" + credentials.password)
         } : {};
 
-        $http.get("/Task/getTasks", {headers : headers}).success(function(data) {
+        $http.get("/userData", {headers : headers}).success(function(data) {
             $location.path("/home");
             $rootScope.authorized = true;
-            $rootScope.user = {name:data.username,friendships:data.friendships};
+            $rootScope.user = {name:data.username};
         }).error(function() {
             $rootScope.authorized = false;
         });
@@ -140,7 +182,7 @@ app.controller('signIn', function($rootScope,$scope,$http,$location,$mdToast) {
             $scope.match = true;
             $http.post("/register", {
                 username: credentials.username,
-                password: credentials.passwordRpt
+                password: credentials.password
             }).success(function (data) {
                 $mdToast.show($mdToast.simple().textContent("Понял, принял!"));
                 $location.path("/login");

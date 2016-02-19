@@ -44,7 +44,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-              Account account = repository.findByUsername(username);
+             Account account = repository.findByUsername(username);
                 UserDetails userDetails = new User(account.getUsername(),account.getPassword(),true,true,true,true, AuthorityUtils.createAuthorityList("USER"));
               return  userDetails;
             }
