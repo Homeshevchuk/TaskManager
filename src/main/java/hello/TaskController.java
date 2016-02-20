@@ -50,15 +50,15 @@ public class TaskController {
 
     @RequestMapping(value = "/Task/editTask", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Task> editTask(@RequestBody Task taskToEdit, @RequestBody long id, Principal principal) {
+    public ResponseEntity<Task> editTask(@RequestBody Task taskToEdit, Principal principal) {
         if (taskToEdit != null) {
-            Account account = userRepository.findOne(id);
-            account.getTaskList().stream().filter(task -> task.getId() == taskToEdit.getId()).forEach(task -> {
-                int index = account.getTaskList().indexOf(task);
-                account.getTaskList().remove(index);
-                account.getTaskList().add(index, taskToEdit);
-            });
-            userRepository.save(account);
+            Account account = userRepository.findByUsername(principal.getName());
+            for(Task task :account.getTaskList()){
+                if(task.getId()==taskToEdit.getId()){
+                    userRepository.UpdateTask(principal.getName(),taskToEdit.getId(),taskToEdit.getTask());
+                }
+            }
+
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }

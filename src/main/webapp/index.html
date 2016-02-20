@@ -30,7 +30,7 @@
     <md-sidenav  md-component-id="left" class="md-sidenav-left" style = "background-color: rgb(249, 255, 251);z-index : 59">
         <md-content  layout = "column" layout-align = "start center" style="height: 100%;">
             <div flex = "10"></div>
-            <ng-letter-avatar ng-if="user.loaded" data="{{user.username}}"  alphabetcolors="customColors" shape = "round" fontsize="150" height = "200" width = "200"></ng-letter-avatar>
+            <ng-letter-avatar ng-if="user.loaded"  data="{{user.username}}" alphabetcolors="customColors" shape = "round" fontsize="150" height = "200" width = "200"></ng-letter-avatar>
             <div layout = "row" layout-align="start center">
                 <md-input-container    >
                     <label>Add friend</label>
@@ -68,16 +68,10 @@
                     <div flex></div>
                     <md-button flex="initial" class="md-icon-button " ng-show="authorized" ><i class="material-icons" style="font-size: 24px;color:#4caf50">timelapse</i>
                     </md-button>
-
                 </md-list-item>
             </md-list>
-
-
-
         </md-content>
     </md-sidenav>
-
-
     <div ng-view style="height: 100%"></div>
 </md-content>
 

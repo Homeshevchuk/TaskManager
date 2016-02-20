@@ -24,5 +24,10 @@ public interface AccountRepository extends GraphRepository<Account> {
 
     @Query("MATCH (n:Account {Username:{user}})-[:FriendWith]->(m:Account ) WHERE (m)-[:FriendWith]->(n) RETURN m")
     List<Account> getFriends(@Param("user") String username);
+
+    @Query("MATCH(acc:Account {Username:{user}})-[:OWNS]->(task:Task )\n" +
+            "WHERE id(task)={taskId}\n" +
+            "Set task.task = {newValue}")
+    void UpdateTask(@Param("user") String username, @Param("taskId") Long id, @Param("newValue")String value);
 }
 

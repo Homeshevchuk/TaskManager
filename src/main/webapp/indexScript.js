@@ -120,6 +120,8 @@ app.controller('navBar', function($rootScope,$scope,$http,$location,$mdSidenav) 
     $scope.logout = function(){
         $http.post('/logout', {}).finally(function() {
             $rootScope.authorized = false;
+            $scope.user  = null;
+            $mdSidenav('left').close();
             $location.path("/login");
         });
     };
