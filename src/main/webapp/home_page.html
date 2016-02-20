@@ -43,57 +43,8 @@
                 </md-button>
             </div>
         </div>
-        <div flex = "15"  hide-xs hide-sm hide-md ng-click="openLeftMenu()"></div>
-        <md-sidenav  md-component-id="left" class="md-sidenav-left" style = "background-color: rgb(249, 255, 251);z-index : 59">
-            <md-content  layout = "column" layout-align = "start center" style="height: 100%;">
-                <div flex = "10"></div>
-                <ng-letter-avatar ng-if="user.ok" data="{{user.name}}"  alphabetcolors="customColors" shape = "round" fontsize="150" height = "200" width = "200"></ng-letter-avatar>
-               <div layout = "row" layout-align="start center">
-                    <md-input-container    >
-                        <label>Add friend</label>
-                        <input  ng-model="friendName"/>
-                    </md-input-container>
-                    <md-button class="md-icon-button " ng-click="addFriend(friendName)" >
-                        <i class="material-icons" style=";color: #81c784;">person_add</i>
-                    </md-button>
-                </div>
+        <div flex = "15"  hide-xs hide-sm hide-md></div>
 
-
-                <md-list style="width: 100%">
-                    <md-subheader ng-show="user.friends.friends.length>0" class="md-no-sticky">Friends</md-subheader>
-                    <md-list-item ng-repeat="friend in user.friends.friends" layout="row" >
-                        <div flex="10"></div>
-                        <p flex = "initial" >{{friend}}</p>
-                        <div flex></div>
-                        <md-button flex="initial" class="md-icon-button " ng-click="deleteFriend($index)" ><i class="material-icons" style="font-size: 24px;color:#4caf50">delete</i>
-                        </md-button>
-
-                    </md-list-item>
-                    <md-subheader ng-show="user.friends.requestsToUser.length>0" class="md-no-sticky">Wanna be friends</md-subheader>
-                    <md-list-item  ng-repeat="requestToUser in user.friends.requestsToUser" layout="row">
-                            <div flex="10"></div>
-                            <p flex = "initial" >{{requestToUser}}</p>
-                            <div flex></div>
-                            <md-button flex="initial" class="md-icon-button " ng-click="acceptFriendRequest($index)" ><i class="material-icons" style="font-size: 24px;color:#4caf50">add</i>
-                            </md-button>
-
-                    </md-list-item>
-                    <md-subheader ng-show="user.friends.requestsFromUser.length>0" class="md-no-sticky">Invited</md-subheader>
-
-                    <md-list-item  ng-repeat="requestFromUser in user.friends.requestsFromUser" layout="row" style="padding: 0px">
-                        <div flex="10"></div>
-                        <p flex = "initial">{{requestFromUser}}</p>
-                        <div flex></div>
-                        <md-button flex="initial" class="md-icon-button " ng-show="authorized" ><i class="material-icons" style="font-size: 24px;color:#4caf50">timelapse</i>
-                        </md-button>
-
-                    </md-list-item>
-                </md-list>
-
-
-
-            </md-content>
-        </md-sidenav>
     </div>
 
 
