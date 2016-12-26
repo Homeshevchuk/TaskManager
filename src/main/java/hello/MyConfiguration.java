@@ -18,7 +18,7 @@ public class MyConfiguration extends Neo4jConfiguration {
 
     @Bean
     public Neo4jServer neo4jServer() {
-        return new RemoteServer("https://neo-hosea-cremin-peachpuff-56c58bc586f0a.do-stories.graphstory.com:7473","56c58c0a49a66","SrXxl6EWcUNiIT5vCZDcAmkDYznOmRMCIMLWt1os");
+        return new RemoteServer("http://app47027947-G7fGcK:9b7fYhWzuJEO3CvlbiQs@hobby-beinempgjildgbkekjhfgmol.dbs.graphenedb.com:24789","app47027947-G7fGcK","9b7fYhWzuJEO3CvlbiQs");
     }
 
     @Bean
